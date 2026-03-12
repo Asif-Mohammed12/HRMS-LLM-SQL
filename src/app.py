@@ -30,12 +30,17 @@ def create_app() -> FastAPI:
 
     # ── CORS ─────────────────────────────────────────────────────────────────
     app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.origins_list,
-        allow_credentials=True,
-        allow_methods=["POST", "GET", "OPTIONS"],
-        allow_headers=["*"],
-    )
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:8080",
+        "http://127.0.0.1:5500",  # VS Code Live Server (for hrms-chart.html)
+        "null",                   # file:// origin (opening HTML directly in browser)
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
     # ── Global exception handler ──────────────────────────────────────────────
     @app.exception_handler(Exception)
