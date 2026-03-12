@@ -31,7 +31,7 @@ def run_query_pipeline(user_query: str, use_cache: bool = True) -> dict:
     """
     from src.core.config import get_settings
     log.info("pipeline_start", user_query=user_query)
-
+    # print("Pipeline input query:", user_query)  # Debug print
     # 1. Build prompt
     system_prompt, user_msg = build_sql_prompt(user_query)
 

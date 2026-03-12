@@ -34,7 +34,7 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     query_cache_ttl: int = 300
     max_rows: int = 100
-    allowed_origins: str = "http://localhost:3000"
+    allowed_origins: str = "http://localhost:3000,http://localhost:5500,http://localhost:8080"
 
     @property
     def database_url(self) -> str:

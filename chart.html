@@ -1,0 +1,133 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LLM SQL Result Visualizer</title>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<style>
+body{
+    font-family: Arial;
+    margin:40px;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    font-family: monospace;
+}
+
+button{
+    padding:10px 15px;
+    margin-top:10px;
+}
+
+.bar{
+    fill:steelblue;
+}
+
+.bar:hover{
+    fill:orange;
+}
+
+.axis text{
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>LLM SQL Result → Chart</h2>
+
+<p>Paste the JSON response from your LLM SQL API:</p>
+
+<textarea id="jsonInput"></textarea>
+<br>
+<button onclick="renderChart()">Render Chart</button>
+
+<div id="chart"></div>
+
+<script>
+
+const width = 800
+const height = 400
+const margin = {top:20,right:20,bottom:60,left:80}
+
+const svg = d3.select("#chart")
+.append("svg")
+.attr("width",width)
+.attr("height",height)
+
+function renderChart(){
+
+svg.selectAll("*").remove()
+
+let input = document.getElementById("jsonInput").value
+
+let parsed
+
+try{
+parsed = JSON.parse(input)
+}catch(e){
+alert("Invalid JSON")
+return
+}
+
+let data = parsed.data.map(d => ({
+emp_id: d.emp_id,
+value: +d.total_hours_worked
+}))
+
+const x = d3.scaleBand()
+.domain(data.map(d=>d.emp_id))
+.range([margin.left,width-margin.right])
+.padding(0.2)
+
+const y = d3.scaleLinear()
+.domain([0,d3.max(data,d=>d.value)])
+.range([height-margin.bottom,margin.top])
+
+svg.selectAll(".bar")
+.data(data)
+.enter()
+.append("rect")
+.attr("class","bar")
+.attr("x",d=>x(d.emp_id))
+.attr("y",d=>y(d.value))
+.attr("width",x.bandwidth())
+.attr("height",d=>height-margin.bottom-y(d.value))
+
+svg.append("g")
+.attr("transform",`translate(0,${height-margin.bottom})`)
+.call(d3.axisBottom(x))
+.selectAll("text")
+.attr("transform","rotate(-40)")
+.style("text-anchor","end")
+
+svg.append("g")
+.attr("transform",`translate(${margin.left},0)`)
+.call(d3.axisLeft(y))
+
+svg.append("text")
+.attr("x",width/2)
+.attr("y",height)
+.attr("text-anchor","middle")
+.text("Employee ID")
+
+svg.append("text")
+.attr("transform","rotate(-90)")
+.attr("x",-height/2)
+.attr("y",20)
+.attr("text-anchor","middle")
+.text("Total Hours Worked")
+
+}
+
+</script>
+
+</body>
+</html>
+```
