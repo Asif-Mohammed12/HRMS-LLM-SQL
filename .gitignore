@@ -1,0 +1,13 @@
+venv/
+.venv/
+env/
+ENV/
+dist/
+build/
+*.egg-info/
+*.egg
+.env
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/

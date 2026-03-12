@@ -1,0 +1,8 @@
+- [/ ] Define project requirements and scope
+- [ ] Set up project directory structure
+- [ ] Initialize Python environment and dependencies
+- [ ] Create core modules for LLM integration and SQL generation
+- [ ] Implement configuration and connection handling for HRMS database
+- [ ] Add example usage scripts and documentation
+- [ ] Write tests for LLM prompts and SQL execution
+- [ ] Verify project builds and runs successfully
