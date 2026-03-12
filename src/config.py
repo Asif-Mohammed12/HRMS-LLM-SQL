@@ -1,15 +1,44 @@
-import os
-from pathlib import Path
-from dotenv import load_dotenv
+"""
+src/core/config.py
+Centralised settings loaded from environment / .env file.
+"""
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from functools import lru_cache
 
-# Load environment variables from a .env file in the project root
-load_dotenv()
 
-LLM_API_KEY = os.getenv("LLM_API_KEY")
-LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o-mini")
-MYSQL_HOST = os.getenv("MYSQL_HOST")
-MYSQL_PORT = os.getenv("MYSQL_PORT", "3306")
-MYSQL_USER = os.getenv("MYSQL_USER")
-MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
-MYSQL_DB = os.getenv("MYSQL_DB")
-DB_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
+    # Anthropic
+    anthropic_api_key: str = ""
+    claude_model: str = "claude-sonnet-4-20250514"
+
+    # PostgreSQL
+    postgres_host: str = "localhost"
+    postgres_port: int = 5432
+    postgres_user: str = "hrms_user"
+    postgres_password: str = "hrms_password"
+    postgres_db: str = "hrms_db"
+
+    # App
+    app_env: str = "development"
+    log_level: str = "INFO"
+    query_cache_ttl: int = 300
+    max_rows: int = 100
+    allowed_origins: str = "http://localhost:3000"
+
+    @property
+    def database_url(self) -> str:
+        return (
+            f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}"
+            f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
+        )
+
+    @property
+    def origins_list(self) -> list[str]:
+        return [o.strip() for o in self.allowed_origins.split(",")]
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()

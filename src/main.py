@@ -1,16 +1,9 @@
-import argparse
-from .sql_generator import query_hrms
-
-def main():
-    parser = argparse.ArgumentParser(description="HRMS LLM‑SQL demo")
-    parser.add_argument("prompt", help="Natural‑language request, e.g. 'list employees hired last month'")
-    args = parser.parse_args()
-    try:
-        rows = query_hrms(args.prompt)
-        for row in rows:
-            print(row)
-    except Exception as e:
-        print(f"Error: {e}")
+"""
+main.py
+Application entry point — run with: uvicorn main:app --reload
+"""
+from src.app import app  # noqa: F401  (re-exported for uvicorn)
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
