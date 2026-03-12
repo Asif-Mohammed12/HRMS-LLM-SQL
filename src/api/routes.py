@@ -1,9 +1,8 @@
 """
 src/api/routes.py
-All FastAPI route handlers.
+FastAPI route handlers — OpenRouter + MySQL edition.
 """
 from fastapi import APIRouter, HTTPException, status
-from sqlalchemy.exc import OperationalError
 
 from src.api.models import (
     QueryRequest, QueryResponse,
@@ -12,30 +11,30 @@ from src.api.models import (
     HealthResponse, ErrorResponse,
 )
 from src.core.pipeline import run_query_pipeline, run_explain_pipeline
-from src.core.schema import SCHEMA_DICT
-from src.db.engine import get_engine, discover_schema
+from src.core.schema import SCHEMA_DICT, get_live_schema_ddl, invalidate_schema_cache
+from src.core.config import get_settings
+from src.db.engine import test_connection, discover_schema
 from src.utils.cache import get_cache
 from src.core.logger import get_logger
 
 log = get_logger(__name__)
-
 router = APIRouter()
 
 
-# ── POST /query ──────────────────────────────────────────────────────────────
+# ── POST /query ───────────────────────────────────────────────────────────────
 @router.post(
     "/query",
     response_model=QueryResponse,
-    summary="Convert natural language to SQL and execute",
+    summary="Natural language → MySQL → JSON results",
     responses={
         400: {"model": ErrorResponse, "description": "Invalid or ambiguous query"},
-        500: {"model": ErrorResponse, "description": "Server or database error"},
+        500: {"model": ErrorResponse, "description": "Server or DB error"},
     },
 )
 async def query(request: QueryRequest):
     """
-    Accept a natural-language HR question, generate safe SQL via Claude,
-    validate, execute against PostgreSQL, and return structured results.
+    Converts a plain-English HR/CRM question to a safe MySQL SELECT query
+    via OpenRouter, validates it, executes it, and returns structured JSON.
     """
     try:
         result = run_query_pipeline(request.query, use_cache=request.use_cache)
@@ -48,17 +47,17 @@ async def query(request: QueryRequest):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(exc))
 
 
-# ── GET /schema ──────────────────────────────────────────────────────────────
+# ── GET /schema ───────────────────────────────────────────────────────────────
 @router.get(
     "/schema",
     response_model=SchemaResponse,
-    summary="Return HRMS database schema",
+    summary="Live MySQL schema introspection",
 )
-async def get_schema(live: bool = False):
+async def get_schema(live: bool = True):
     """
-    Returns the HRMS schema.
-    - `live=false` (default): returns the static schema definition.
-    - `live=true`: introspects the connected PostgreSQL database.
+    Returns the schema of the connected MySQL database.
+    `live=true` (default) introspects the DB directly each call.
+    `live=false` returns the in-memory cached dict.
     """
     if live:
         try:
@@ -72,21 +71,31 @@ async def get_schema(live: bool = False):
             log.error("schema_discovery_error", error=str(exc))
             raise HTTPException(status_code=500, detail=f"Schema discovery failed: {exc}")
 
-    tables = [SchemaTable(**t) for t in SCHEMA_DICT["tables"]]
-    return SchemaResponse(tables=tables, source="static")
+    tables = [SchemaTable(**t) for t in SCHEMA_DICT.get("tables", [])]
+    return SchemaResponse(tables=tables, source=SCHEMA_DICT.get("source", "cached"))
 
 
-# ── POST /explain ────────────────────────────────────────────────────────────
+# ── POST /schema/refresh ──────────────────────────────────────────────────────
+@router.post(
+    "/schema/refresh",
+    summary="Force re-discovery of schema from MySQL",
+)
+async def refresh_schema():
+    """Clears the cached schema DDL. Useful after table migrations."""
+    invalidate_schema_cache()
+    new_ddl = get_live_schema_ddl()
+    table_count = new_ddl.count("CREATE TABLE")
+    return {"status": "refreshed", "tables_discovered": table_count}
+
+
+# ── POST /explain ─────────────────────────────────────────────────────────────
 @router.post(
     "/explain",
     response_model=ExplainResponse,
     summary="Explain a SQL query in plain English",
 )
 async def explain(request: ExplainRequest):
-    """
-    Given an original question and a SQL query, return a plain-English
-    explanation suitable for non-technical stakeholders.
-    """
+    """Uses OpenRouter to explain the SQL in terms a non-technical user understands."""
     try:
         result = run_explain_pipeline(request.query, request.sql)
         return ExplainResponse(**result)
@@ -95,34 +104,22 @@ async def explain(request: ExplainRequest):
 
 
 # ── GET /health ───────────────────────────────────────────────────────────────
-@router.get(
-    "/health",
-    response_model=HealthResponse,
-    summary="Health check",
-)
+@router.get("/health", response_model=HealthResponse, summary="Health check")
 async def health():
-    db_ok = False
-    try:
-        engine = get_engine()
-        with engine.connect():
-            db_ok = True
-    except OperationalError:
-        pass
-
+    """Checks MySQL connectivity and returns cache stats."""
+    db_ok = test_connection()
     cache = get_cache()
+    settings = get_settings()
     return HealthResponse(
         status="ok" if db_ok else "degraded",
         db_connected=db_ok,
         cache_size=cache.size,
+        model=settings.openrouter_model,
     )
 
 
 # ── DELETE /cache ─────────────────────────────────────────────────────────────
-@router.delete(
-    "/cache",
-    summary="Clear the query result cache",
-)
+@router.delete("/cache", summary="Clear query result cache")
 async def clear_cache():
-    cache = get_cache()
-    count = cache.clear()
+    count = get_cache().clear()
     return {"cleared_entries": count}
