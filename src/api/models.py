@@ -26,7 +26,7 @@ class QueryRequest(BaseModel):
 
 
 class ExplainRequest(BaseModel):
-    query: str = Field(..., min_length=3, max_length=1000)
+    query: str | None = Field(None, min_length=3, max_length=1000)
     sql: str = Field(..., min_length=6)
 
 

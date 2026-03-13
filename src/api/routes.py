@@ -2,7 +2,8 @@
 src/api/routes.py
 FastAPI route handlers — OpenRouter + MySQL edition.
 """
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Body
+from typing import List, Optional
 
 from src.api.models import (
     QueryRequest, QueryResponse,
@@ -95,12 +96,78 @@ async def refresh_schema():
     summary="Explain a SQL query in plain English",
 )
 async def explain(request: ExplainRequest):
-    """Uses OpenRouter to explain the SQL in terms a non-technical user understands."""
+    """
+    Uses OpenRouter to explain the SQL in terms a non-technical user understands.
+    Accepts either both query and sql, or just sql.
+    """
     try:
-        result = run_explain_pipeline(request.query, request.sql)
+        user_query = request.query if request.query else "No user question provided"
+        result = run_explain_pipeline(user_query, request.sql)
         return ExplainResponse(**result)
     except RuntimeError as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
+
+# ── POST /chat ────────────────────────────────────────────────────────────────
+@router.post(
+    "/chat",
+    summary="Follow-up/few-shot chat for SQL debugging and explanations",
+)
+async def chat(
+    messages: List[dict] = Body(..., description="Conversation history, e.g. [{role, content}]"),
+    sql_context: Optional[str] = Body(None, description="Optional SQL context for debugging"),
+    error_context: Optional[str] = Body(None, description="Optional error message context"),
+    schema_ddl: Optional[str] = Body(None, description="Optional schema DDL for LLM lookup"),
+    use_cache: bool = Body(False, description="(Unused)"),
+):
+    """
+    Follow-up chat endpoint for SQL explanation, debugging, or iterative refinement.
+    Accepts a message history (list of {role, content}), and optional SQL/error/schema context.
+    Returns a reply from the LLM.
+    """
+    from src.core.llm_client import call_llm
+    from src.core.prompt_builder import _EXPLAIN_SYSTEM_PROMPT
+    from src.core.schema import get_live_schema_ddl
+
+    # Compose system prompt based on context
+    system_prompt = _EXPLAIN_SYSTEM_PROMPT
+    # Attach schema DDL for LLM lookup
+    schema = schema_ddl or get_live_schema_ddl()
+    if schema:
+        system_prompt += "\n\n━━━━━━━━━━━━━━━━━━━━ DATABASE SCHEMA ━━━━━━━━━━━━━━━━━━━━\n" + schema + "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    if sql_context:
+        system_prompt += "\n\nThe following SQL query is relevant to this conversation:\n" + sql_context
+    if error_context:
+        system_prompt += "\n\nThe following database error message is relevant:\n" + error_context
+
+    # Compose messages for OpenRouter
+    chat_messages = [{"role": "system", "content": system_prompt}]
+    for m in messages:
+        if "role" in m and "content" in m:
+            chat_messages.append({"role": m["role"], "content": m["content"]})
+
+    try:
+        from src.core.config import get_settings
+        s = get_settings()
+        client = __import__("openai").OpenAI(
+            api_key=s.openrouter_api_key,
+            base_url=s.openrouter_base_url,
+            default_headers={
+                "HTTP-Referer": s.openrouter_site_url,
+                "X-Title": s.openrouter_site_name,
+            },
+        )
+        response = client.chat.completions.create(
+            model=s.openrouter_model,
+            max_tokens=1024,
+            temperature=0,
+            messages=chat_messages,
+        )
+        reply = response.choices[0].message.content.strip()
+        return {"reply": reply}
+    except Exception as exc:
+        log.error("chat_api_error", error=str(exc))
+        raise HTTPException(status_code=500, detail=f"Chat API error: {exc}")
 
 
 # ── GET /health ───────────────────────────────────────────────────────────────
