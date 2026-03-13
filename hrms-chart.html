@@ -18,7 +18,6 @@ html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);display:flex;flex-direction:column}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.4}
 
-/* ── Header ── */
 header{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:13px 24px;border-bottom:1px solid var(--border);background:var(--surface);z-index:100}
 .logo{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .logo-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
@@ -31,13 +30,10 @@ header{flex-shrink:0;display:flex;align-items:center;justify-content:space-betwe
 .conn-dot.loading{background:var(--accent4);animation:pulse .8s ease-in-out infinite}
 .header-badge{font-family:var(--mono);font-size:10px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:3px 9px;border-radius:4px}
 
-/* ── Layout ── */
 main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:hidden}
 
-/* ── Left panel ── */
 .panel-left{background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0;overflow:hidden}
 
-/* API config section */
 .api-config{flex-shrink:0;padding:14px 16px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
 .section-label{font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-bottom:2px}
 .api-row{display:flex;gap:6px;align-items:center}
@@ -64,7 +60,6 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .toggle input:checked ~ .toggle-label{color:var(--accent)}
 .opt-divider{width:1px;height:14px;background:var(--border)}
 
-/* Query input section */
 .query-section{flex-shrink:0;padding:14px 16px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
 .query-input-wrap{position:relative}
 #query-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;line-height:1.6;padding:10px 12px 10px 12px;border-radius:6px;outline:none;resize:none;transition:border-color .15s;min-height:80px;max-height:140px}
@@ -78,18 +73,15 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .btn-clear{flex-shrink:0;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-family:var(--sans);font-size:10px;font-weight:600;padding:10px 11px;border-radius:6px;cursor:pointer;transition:all .15s}
 .btn-clear:hover{border-color:var(--accent3);color:var(--accent3)}
 
-/* Loading bar */
 .loading-bar{height:2px;background:var(--border);border-radius:1px;overflow:hidden;flex-shrink:0;display:none}
 .loading-bar.active{display:block}
 .loading-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:1px;animation:loadbar 1.4s ease-in-out infinite}
 @keyframes loadbar{0%{width:0%;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0%;margin-left:100%}}
 
-/* Status line */
 .status-line{flex-shrink:0;padding:7px 16px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;min-height:32px;background:var(--surface2)}
 .status-icon{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .status-icon.ok{background:var(--accent)}.status-icon.err{background:var(--accent3)}.status-icon.loading{background:var(--accent4);animation:pulse .8s ease-in-out infinite}
 
-/* History */
 .history-section{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .history-header{flex-shrink:0;padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .history-title{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
@@ -104,16 +96,13 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .h-rows{color:var(--accent2)}.h-time{margin-left:auto}
 .history-empty{padding:28px 16px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted);opacity:.6;line-height:1.7}
 
-/* ── Right panel ── */
 .panel-right{display:flex;flex-direction:column;min-height:0;overflow:hidden;background:var(--bg)}
 .viz-area{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px;min-height:0}
 
-/* scrollbars */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-/* ── Empty state ── */
 .empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--muted);text-align:center;min-height:340px;padding:40px}
 .empty-icon{width:60px;height:60px;border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--surface)}
 .empty-state h3{font-size:14px;font-weight:700;color:var(--text);opacity:.4}
@@ -122,7 +111,6 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .example-chip{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--muted);cursor:pointer;text-align:left;transition:all .15s;line-height:1.4}
 .example-chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,229,160,.04)}
 
-/* ── Viz cards ── */
 .meta-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex-shrink:0}
 .meta-card{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:11px 13px;display:flex;flex-direction:column;gap:3px;transition:border-color .2s;min-width:0}
 .meta-card:hover{border-color:var(--accent)}
@@ -135,6 +123,10 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .query-card-title{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .query-tag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;background:rgba(0,229,160,.1);color:var(--accent);border:1px solid rgba(0,229,160,.2)}
 .query-body{padding:11px 14px;font-family:var(--mono);font-size:11px;line-height:1.6;color:#a0b0c8;white-space:pre-wrap;word-break:break-word;max-height:110px;overflow-y:auto}
+
+.btn-explain-sql{display:inline-flex;align-items:center;gap:5px;background:rgba(0,102,255,.12);border:1px solid rgba(0,102,255,.3);color:var(--accent2);font-family:var(--mono);font-size:9px;font-weight:600;padding:4px 9px;border-radius:4px;cursor:pointer;transition:all .15s;letter-spacing:.04em;text-transform:uppercase}
+.btn-explain-sql:hover{background:rgba(0,102,255,.2);border-color:var(--accent2)}
+.btn-explain-sql svg{flex-shrink:0}
 
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:7px;overflow:hidden;flex-shrink:0}
 .chart-card-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -156,15 +148,11 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .page-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);width:22px;height:22px;border-radius:3px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .15s;padding:0;line-height:1}
 .page-btn:hover{border-color:var(--accent);color:var(--accent)}
 .page-info{font-family:var(--mono);font-size:10px;color:var(--muted);min-width:32px;text-align:center}
-
 #chart-container{padding:16px 16px 10px;position:relative}
 
-/* D3 */
 .bar{transition:opacity .15s;cursor:pointer}.bar:hover{opacity:.72}
 .tick line{stroke:var(--border)}.tick text{fill:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px}.domain{stroke:var(--border)}
 .value-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;fill:var(--text)}
-
-/* Pie */
 .pie-wrap{display:flex;align-items:flex-start;gap:16px;padding:10px 10px 14px}
 .pie-legend{display:flex;flex-direction:column;gap:4px;max-height:280px;overflow-y:auto;flex:1;min-width:0}
 .legend-item{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;color:var(--text);cursor:pointer;padding:3px 5px;border-radius:3px;transition:background .1s}
@@ -173,14 +161,12 @@ main{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0;overflow:h
 .legend-lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
 .legend-val{color:var(--muted);font-size:9px;flex-shrink:0;padding-left:6px}
 
-/* Tooltip */
 .tooltip{position:fixed;background:#1a1f2e;border:1px solid var(--border);border-radius:6px;padding:9px 13px;pointer-events:none;opacity:0;transition:opacity .1s;font-family:var(--mono);font-size:11px;z-index:9000;min-width:148px;box-shadow:0 8px 28px rgba(0,0,0,.55)}
 .tooltip.visible{opacity:1}
 .tt-key{color:var(--muted);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1px}
 .tt-val{color:var(--accent);font-size:12px;font-weight:500;margin-bottom:6px}
 .tt-val:last-child{margin-bottom:0}
 
-/* Table */
 .table-card{background:var(--surface);border:1px solid var(--border);border-radius:7px;overflow:hidden;flex-shrink:0}
 .table-card-header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .table-card-title{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -190,22 +176,119 @@ th{background:var(--surface2);padding:8px 14px;text-align:left;font-size:8px;let
 td{padding:8px 14px;border-bottom:1px solid var(--border);color:var(--text);white-space:nowrap}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(255,255,255,.02)}
-td.numeric{color:var(--accent);text-align:right}
-th.numeric{text-align:right}
+td.numeric{color:var(--accent);text-align:right}th.numeric{text-align:right}
 
-/* Error / info banners */
 .error-banner{background:rgba(255,77,109,.08);border:1px solid rgba(255,77,109,.25);border-radius:6px;padding:13px 15px;font-family:var(--mono);font-size:11px;color:var(--accent3);display:flex;align-items:flex-start;gap:9px;line-height:1.55}
 .info-banner{background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.25);border-radius:6px;padding:13px 15px;font-family:var(--mono);font-size:11px;color:#80aaff;display:flex;align-items:center;gap:9px}
 
-/* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .animate-in{animation:fadeUp .28s ease forwards;opacity:0}
 .animate-in:nth-child(1){animation-delay:.04s}.animate-in:nth-child(2){animation-delay:.08s}
 .animate-in:nth-child(3){animation-delay:.13s}.animate-in:nth-child(4){animation-delay:.18s}
 
-/* Spinner */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner{width:13px;height:13px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+
+/* ═══════════════════════════════════════════════
+   SQL EXPLAINER / CHAT DRAWER
+═══════════════════════════════════════════════ */
+.chat-fab{position:fixed;bottom:28px;right:28px;width:50px;height:50px;background:var(--accent2);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,102,255,.45);z-index:1000;transition:transform .18s,box-shadow .18s,background .15s}
+.chat-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,102,255,.6)}
+.chat-fab:active{transform:scale(.96)}
+.chat-fab-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:var(--accent3);border-radius:50%;font-family:var(--mono);font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);opacity:0;transform:scale(0);transition:all .2s}
+.chat-fab-badge.show{opacity:1;transform:scale(1)}
+
+.chat-drawer{position:fixed;bottom:88px;right:28px;width:460px;max-height:640px;background:var(--surface);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;overflow:hidden;z-index:999;box-shadow:0 16px 48px rgba(0,0,0,.6);transform:translateY(14px) scale(.97);transform-origin:bottom right;opacity:0;pointer-events:none;transition:transform .22s cubic-bezier(.34,1.3,.64,1),opacity .18s ease}
+.chat-drawer.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+
+.chat-header{flex-shrink:0;padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--surface2)}
+.chat-header-icon{width:30px;height:30px;background:rgba(0,102,255,.15);border:1px solid rgba(0,102,255,.25);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-header-text{flex:1;min-width:0}
+.chat-header-title{font-size:12px;font-weight:700;color:var(--text)}
+.chat-header-sub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:1px}
+.chat-close-btn{background:none;border:none;cursor:pointer;color:var(--muted);padding:4px;border-radius:4px;transition:color .15s,background .15s;display:flex;align-items:center;justify-content:center}
+.chat-close-btn:hover{color:var(--text);background:rgba(255,255,255,.06)}
+
+/* API base URL row inside chat */
+.chat-base-row{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--bg)}
+.chat-base-label{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.chat-base-input{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:10px;padding:5px 9px;border-radius:4px;outline:none;transition:border-color .15s}
+.chat-base-input:focus{border-color:var(--accent2)}
+.chat-base-input::placeholder{color:var(--muted);opacity:.5}
+
+.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0}
+
+.msg{display:flex;flex-direction:column;gap:4px;max-width:92%;animation:fadeUp .2s ease forwards}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg.assistant{align-self:flex-start;align-items:flex-start}
+.msg-label{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 4px}
+.msg-bubble{padding:9px 12px;border-radius:10px;font-family:var(--mono);font-size:11px;line-height:1.65;word-break:break-word;white-space:pre-wrap}
+.msg.user .msg-bubble{background:rgba(0,102,255,.18);border:1px solid rgba(0,102,255,.28);color:#c0d4f5;border-bottom-right-radius:3px}
+.msg.assistant .msg-bubble{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:3px}
+.msg.assistant .msg-bubble.thinking{color:var(--muted);font-style:italic}
+
+/* Error debug badge inside user bubble */
+.err-badge{display:inline-block;background:rgba(255,77,109,.15);border:1px solid rgba(255,77,109,.3);color:var(--accent3);font-family:var(--mono);font-size:9px;padding:1px 7px;border-radius:3px;margin-bottom:5px}
+.msg-sql-snip{font-family:var(--mono);font-size:10px;background:rgba(0,0,0,.3);border:1px solid rgba(0,102,255,.2);border-radius:5px;padding:7px 10px;color:#7fa8d8;max-height:70px;overflow-y:auto;white-space:pre;display:block;margin-top:5px}
+.msg-err-snip{font-family:var(--mono);font-size:10px;background:rgba(255,77,109,.07);border:1px solid rgba(255,77,109,.2);border-radius:5px;padding:6px 10px;color:var(--accent3);max-height:50px;overflow-y:auto;white-space:pre;display:block;margin-top:4px}
+
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+.typing-dot{display:inline-block;width:5px;height:5px;background:var(--muted);border-radius:50%;margin:0 2px;animation:blink 1.2s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+
+/* Mode tabs */
+.chat-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);flex-shrink:0}
+.chat-tab{flex:1;padding:8px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;text-align:center}
+.chat-tab.active{color:var(--accent2);border-bottom-color:var(--accent2)}
+.chat-tab:hover:not(.active){color:var(--text)}
+
+/* Bottom input zones */
+.chat-input-zone{flex-shrink:0;border-top:1px solid var(--border)}
+
+/* Explain tab input area */
+.explain-panel{display:flex;flex-direction:column;gap:0}
+.quick-chips{display:flex;flex-wrap:wrap;gap:5px;padding:9px 12px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.quick-chip{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:9px;padding:3px 9px;border-radius:20px;cursor:pointer;transition:all .15s}
+.quick-chip:hover{border-color:var(--accent2);color:var(--accent2);background:rgba(0,102,255,.07)}
+
+.sql-block{display:flex;flex-direction:column}
+.sql-block-header{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:var(--bg)}
+.sql-block-label{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.btn-use-last{background:none;border:1px dashed rgba(0,229,160,.25);color:rgba(0,229,160,.6);font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;cursor:pointer;transition:all .15s}
+.btn-use-last:hover{border-color:var(--accent);color:var(--accent)}
+
+#chat-sql-input{width:100%;background:var(--surface2);border:none;border-bottom:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;line-height:1.55;padding:9px 12px;outline:none;resize:none;min-height:64px;max-height:110px}
+#chat-sql-input::placeholder{color:var(--muted);opacity:.45}
+
+/* Error debug zone — the new feature */
+.error-zone{border-top:1px solid var(--border);background:rgba(255,77,109,.04)}
+.error-zone-header{display:flex;align-items:center;justify-content:space-between;padding:6px 12px}
+.error-zone-label{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent3);display:flex;align-items:center;gap:5px}
+.btn-err-clear{background:none;border:none;color:var(--muted);cursor:pointer;font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:3px;transition:all .15s}
+.btn-err-clear:hover{color:var(--accent3)}
+#chat-err-input{width:100%;background:rgba(255,77,109,.06);border:none;border-bottom:1px solid rgba(255,77,109,.15);color:#fca5a5;font-family:var(--mono);font-size:10px;line-height:1.5;padding:7px 12px;outline:none;resize:none;min-height:44px;max-height:80px}
+#chat-err-input::placeholder{color:rgba(255,77,109,.35)}
+
+.ask-row{display:flex;gap:6px;align-items:center;padding:8px 10px;background:var(--surface2);border-top:1px solid var(--border)}
+#chat-ask-input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:7px 11px;border-radius:6px;outline:none;transition:border-color .15s}
+#chat-ask-input:focus{border-color:var(--accent2)}
+#chat-ask-input::placeholder{color:var(--muted);opacity:.5}
+.btn-chat-send{flex-shrink:0;background:var(--accent2);color:#fff;border:none;padding:7px 13px;border-radius:6px;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.btn-chat-send:hover{background:#1a7fff;transform:translateY(-1px)}
+.btn-chat-send:disabled{background:var(--surface);color:var(--muted);border:1px solid var(--border);cursor:not-allowed;transform:none}
+
+/* Chat / follow-up tab */
+.chat-panel{display:none;flex-direction:column;gap:0}
+.followup-row{display:flex;gap:6px;align-items:center;padding:9px 10px;border-top:1px solid var(--border);background:var(--surface2)}
+#chat-followup-input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:7px 11px;border-radius:6px;outline:none;transition:border-color .15s}
+#chat-followup-input:focus{border-color:var(--accent2)}
+#chat-followup-input::placeholder{color:var(--muted);opacity:.5}
+
+/* Empty state inside chat */
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center}
+.chat-empty-icon{width:38px;height:38px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,102,255,.07);margin-bottom:4px}
+.chat-empty-title{font-size:12px;font-weight:700;color:var(--text);opacity:.5}
+.chat-empty-desc{font-family:var(--mono);font-size:10px;color:var(--muted);max-width:260px;line-height:1.6;opacity:.7}
 </style>
 </head>
 <body>
@@ -227,8 +310,6 @@ th.numeric{text-align:right}
 <main>
   <!-- ── LEFT PANEL ── -->
   <div class="panel-left">
-
-    <!-- API URL config -->
     <div class="api-config">
       <div class="section-label">API Endpoint</div>
       <div class="api-row">
@@ -263,7 +344,6 @@ th.numeric{text-align:right}
       <div class="api-note">POST { "query": "...", "use_cache": bool } &nbsp;|&nbsp; Ctrl+Enter to ask</div>
     </div>
 
-    <!-- Query input -->
     <div class="query-section">
       <div class="section-label">Natural Language Query</div>
       <textarea id="query-input" rows="3"
@@ -277,16 +357,13 @@ th.numeric{text-align:right}
       </div>
     </div>
 
-    <!-- Loading bar -->
     <div class="loading-bar" id="loading-bar"><div class="loading-bar-inner"></div></div>
 
-    <!-- Status line -->
     <div class="status-line" id="status-line">
       <div class="status-icon" id="status-icon"></div>
       <span id="status-text">Enter a query and click Ask</span>
     </div>
 
-    <!-- Query history -->
     <div class="history-section">
       <div class="history-header">
         <div class="history-title">History</div>
@@ -325,10 +402,149 @@ th.numeric{text-align:right}
 
 <div class="tooltip" id="tooltip"></div>
 
+<!-- ══════════════════════════════════════════
+     SQL EXPLAINER + ERROR DEBUGGER FAB
+══════════════════════════════════════════ -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()" title="SQL Explainer & Debugger">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 10h.01M12 10h.01M15 10h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <span class="chat-fab-badge" id="chat-fab-badge">!</span>
+</button>
+
+<!-- Chat Drawer -->
+<div class="chat-drawer" id="chat-drawer">
+
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="var(--accent2)"/>
+      </svg>
+    </div>
+    <div class="chat-header-text">
+      <div class="chat-header-title">SQL Explainer &amp; Debugger</div>
+      <div class="chat-header-sub" id="chat-header-sub">Calls your API · /api/v1/explain &amp; /api/v1/chat</div>
+    </div>
+    <button class="chat-close-btn" onclick="toggleChat()">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 3l9 9M12 3l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <!-- API base URL config row -->
+  <div class="chat-base-row">
+    <span class="chat-base-label">Base URL</span>
+    <input class="chat-base-input" id="chat-base-url"
+      type="text" placeholder="http://localhost:8000"
+      value="http://localhost:8000" />
+  </div>
+
+  <!-- Mode Tabs -->
+  <div class="chat-tabs">
+    <button class="chat-tab active" id="tab-explain" onclick="switchTab('explain')">Explain SQL</button>
+    <button class="chat-tab" id="tab-debug" onclick="switchTab('debug')">🐛 Debug Error</button>
+    <button class="chat-tab" id="tab-chat" onclick="switchTab('chat')">Follow-up Chat</button>
+  </div>
+
+  <!-- Messages area -->
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-empty" id="chat-empty">
+      <div class="chat-empty-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 2v6h6M9 13h6M9 17h4" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="chat-empty-title">SQL Assistant</div>
+      <div class="chat-empty-desc">Explain queries, debug errors, and ask follow-up questions — all via your FastAPI backend.</div>
+    </div>
+  </div>
+
+  <!-- ── EXPLAIN TAB ── -->
+  <div class="chat-input-zone" id="panel-explain">
+    <div class="explain-panel">
+      <div class="quick-chips">
+        <button class="quick-chip" onclick="sendQuick('Explain this SQL in plain English')">Plain English</button>
+        <button class="quick-chip" onclick="sendQuick('What tables and joins does this query use?')">Tables &amp; Joins</button>
+        <button class="quick-chip" onclick="sendQuick('What performance issues could this query have?')">Performance</button>
+        <button class="quick-chip" onclick="sendQuick('How can I optimize this SQL?')">Optimize</button>
+      </div>
+      <div class="sql-block">
+        <div class="sql-block-header">
+          <span class="sql-block-label">SQL Query</span>
+          <button class="btn-use-last" onclick="useLastSql()">↑ Use Last SQL</button>
+        </div>
+        <textarea id="chat-sql-input" placeholder="SELECT e.first_name, SUM(a.work_hours) AS total_hours&#10;FROM employees e&#10;JOIN attendance a ON a.employee_id = e.employee_id&#10;GROUP BY e.first_name ORDER BY total_hours DESC LIMIT 10;"></textarea>
+      </div>
+      <div class="ask-row">
+        <input type="text" id="chat-ask-input" placeholder="Ask about this SQL…" />
+        <button class="btn-chat-send" id="btn-explain-send" onclick="callExplain()">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Explain
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DEBUG TAB ── -->
+  <div class="chat-input-zone" id="panel-debug" style="display:none">
+    <div class="explain-panel">
+      <div class="quick-chips">
+        <button class="quick-chip" onclick="sendDebugQuick('Fix the SQL error and explain what was wrong')">Fix &amp; Explain</button>
+        <button class="quick-chip" onclick="sendDebugQuick('What caused this SQL error?')">Root Cause</button>
+        <button class="quick-chip" onclick="sendDebugQuick('Rewrite this query correctly for PostgreSQL')">Rewrite for PG</button>
+        <button class="quick-chip" onclick="sendDebugQuick('Check column names against the HRMS schema')">Check Schema</button>
+      </div>
+      <div class="sql-block">
+        <div class="sql-block-header">
+          <span class="sql-block-label">Errored SQL</span>
+          <button class="btn-use-last" onclick="useLastSql('debug-sql')">↑ Use Last SQL</button>
+        </div>
+        <textarea id="debug-sql-input" placeholder="Paste the SQL that produced the error…" style="width:100%;background:var(--surface2);border:none;border-bottom:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;line-height:1.55;padding:9px 12px;outline:none;resize:none;min-height:64px;max-height:110px"></textarea>
+      </div>
+      <div class="error-zone">
+        <div class="error-zone-header">
+          <span class="error-zone-label">
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ff4d6d" stroke-width="1.2"/><path d="M8 5v4M8 10.5v.5" stroke="#ff4d6d" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Database Error Message
+          </span>
+          <button class="btn-err-clear" onclick="document.getElementById('debug-err-input').value=''">clear</button>
+        </div>
+        <textarea id="debug-err-input" placeholder="Paste the error message from PostgreSQL / SQLAlchemy…" style="width:100%;background:rgba(255,77,109,.06);border:none;border-bottom:1px solid rgba(255,77,109,.15);color:#fca5a5;font-family:var(--mono);font-size:10px;line-height:1.5;padding:7px 12px;outline:none;resize:none;min-height:44px;max-height:80px"></textarea>
+      </div>
+      <div class="ask-row">
+        <input type="text" id="debug-ask-input" placeholder="What to ask the AI about this error…" style="flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:7px 11px;border-radius:6px;outline:none;transition:border-color .15s" />
+        <button class="btn-chat-send" id="btn-debug-send" onclick="callDebug()">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.2"/><path d="M8 5v4M8 10.5v.5" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Debug
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHAT / FOLLOW-UP TAB ── -->
+  <div class="chat-input-zone" id="panel-chat" style="display:none">
+    <div class="followup-row">
+      <input type="text" id="chat-followup-input" placeholder="Ask a follow-up about the SQL or results…" />
+      <button class="btn-chat-send" id="btn-followup-send" onclick="callFollowup()">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Send
+      </button>
+    </div>
+  </div>
+
+</div><!-- /chat-drawer -->
+
 <script>
 // ── State ──────────────────────────────────────────────────────────────────
 var gData=null,gType='bar',gX='',gY='',gPage=0,PAGE=20;
 var gHistory=[],gActiveIdx=-1,gLoading=false;
+var gLastSql='';
+var gChatOpen=false,gChatTab='explain';
+// Conversation history for /api/v1/chat (multi-turn)
+var gConvHistory=[]; // [{role,content,sql?,error?}]
+var gChatBusy=false;
 var PAL=['#0066ff','#00e5a0','#ff4d6d','#ffb830','#a855f7','#06b6d4','#f97316','#10b981','#e879f9','#facc15','#38bdf8','#fb7185','#34d399','#c084fc','#fbbf24','#60a5fa','#4ade80','#f472b6','#818cf8','#a3e635'];
 function pc(i){return PAL[i%PAL.length];}
 
@@ -338,7 +554,6 @@ function isN(v){return v!=null&&v!==''&&/^-?\d+(\.\d+)?$/.test(String(v).trim())
 function fmt(n){n=Number(n);if(isNaN(n))return '0';if(n>=1e9)return(n/1e9).toFixed(1)+'B';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n%1===0?String(n):n.toFixed(2);}
 function sDom(vals){var mn=d3.min(vals),mx=d3.max(vals),pad=(mx===mn)?Math.max(Math.abs(mx)*.5,1):(mx-mn)*.18;return[Math.max(0,mn-pad),mx+pad];}
 function timeAgo(ms){var s=Math.floor((Date.now()-ms)/1000);if(s<60)return s+'s ago';if(s<3600)return Math.floor(s/60)+'m ago';return Math.floor(s/3600)+'h ago';}
-
 function detectKeys(data){
   if(!data||!data.length)return{x:'',y:''};
   var keys=Object.keys(data[0]);
@@ -351,71 +566,50 @@ function detectKeys(data){
   return{x:xB,y:yB};
 }
 
+// ── Base URL helpers ───────────────────────────────────────────────────────
+function getChatBase(){
+  return (document.getElementById('chat-base-url').value||'http://localhost:8000').replace(/\/$/,'');
+}
+function getQueryBase(){
+  var url=document.getElementById('api-url').value.trim();
+  // extract base from full query URL
+  var m=url.match(/^(https?:\/\/[^/]+)/);
+  return m?m[1]:'http://localhost:8000';
+}
+
 // ── Connection test ────────────────────────────────────────────────────────
 function setConn(state,label){
   var dot=document.getElementById('conn-dot');
-  var lbl=document.getElementById('conn-label');
-  dot.className='conn-dot'+( state==='ok'?' ok':state==='err'?' err':state==='loading'?' loading':'');
-  lbl.textContent=label;
+  dot.className='conn-dot'+(state==='ok'?' ok':state==='err'?' err':state==='loading'?' loading':'');
+  document.getElementById('conn-label').textContent=label;
 }
-
 function toggleProxy(){
-  var chk=document.getElementById('chk-proxy');
-  chk.checked=!chk.checked;
-  var lbl=document.getElementById('lbl-proxy');
-  var badge=document.getElementById('cors-badge');
-  var hint=document.getElementById('cors-hint');
-  if(chk.checked){
-    lbl.textContent='Proxy: ON';
-    badge.className='cors-badge ok';badge.textContent='CORS OK';
-    hint.innerHTML='Routing via <b>corsproxy.io</b> &mdash; works for local testing';
-  } else {
-    lbl.textContent='Use CORS Proxy';
-    badge.className='cors-badge warn';badge.textContent='CORS';
-    hint.innerHTML='Add <b>ALLOW_ORIGINS=["*"]</b> to FastAPI or enable proxy';
-  }
+  var chk=document.getElementById('chk-proxy'); chk.checked=!chk.checked;
+  document.getElementById('lbl-proxy').textContent=chk.checked?'Proxy: ON':'Use CORS Proxy';
+  var badge=document.getElementById('cors-badge'),hint=document.getElementById('cors-hint');
+  if(chk.checked){badge.className='cors-badge ok';badge.textContent='CORS OK';hint.innerHTML='Routing via <b>corsproxy.io</b>';}
+  else{badge.className='cors-badge warn';badge.textContent='CORS';hint.innerHTML='Add <b>ALLOW_ORIGINS=["*"]</b> to FastAPI';}
 }
 function toggleCache(){
-  var chk=document.getElementById('chk-cache');
-  chk.checked=!chk.checked;
-  var lbl=document.getElementById('lbl-cache');
-  lbl.textContent='use_cache: '+(chk.checked?'true':'false');
+  var chk=document.getElementById('chk-cache');chk.checked=!chk.checked;
+  document.getElementById('lbl-cache').textContent='use_cache: '+(chk.checked?'true':'false');
 }
 function buildUrl(raw){
-  var proxy=document.getElementById('chk-proxy').checked;
-  if(!proxy)return raw;
-  return 'https://corsproxy.io/?'+encodeURIComponent(raw);
+  return document.getElementById('chk-proxy').checked?'https://corsproxy.io/?'+encodeURIComponent(raw):raw;
 }
 function testConn(){
   var raw=document.getElementById('api-url').value.trim();
   if(!raw){setStatus('err','Enter an API URL first');return;}
   setConn('loading','Testing...');
   var schemaUrl=raw.replace(/\/query\s*$/,'/schema');
-  var finalUrl=buildUrl(schemaUrl);
-  fetch(finalUrl,{method:'GET',signal:AbortSignal.timeout(6000)})
-    .then(function(r){
-      setConn('ok','Connected');
-      setStatus('ok','API reachable (HTTP '+r.status+')');
-      document.getElementById('cors-badge').className='cors-badge ok';
-      document.getElementById('cors-badge').textContent='CORS OK';
-      document.getElementById('cors-hint').innerHTML='Connection verified successfully';
-    })
+  fetch(buildUrl(schemaUrl),{method:'GET',signal:AbortSignal.timeout(6000)})
+    .then(function(r){setConn('ok','Connected');setStatus('ok','API reachable (HTTP '+r.status+')');document.getElementById('cors-badge').className='cors-badge ok';document.getElementById('cors-badge').textContent='CORS OK';document.getElementById('cors-hint').innerHTML='Connection verified';})
     .catch(function(){
-      var fallUrl=buildUrl(raw);
-      fetch(fallUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"query":"ping"}',signal:AbortSignal.timeout(6000)})
-        .then(function(r){
-          setConn('ok','Connected');setStatus('ok','API reachable ('+r.status+')');
-          document.getElementById('cors-badge').className='cors-badge ok';
-          document.getElementById('cors-badge').textContent='CORS OK';
-        })
+      fetch(buildUrl(raw),{method:'POST',headers:{'Content-Type':'application/json'},body:'{"query":"ping"}',signal:AbortSignal.timeout(6000)})
+        .then(function(r){setConn('ok','Connected');setStatus('ok','API reachable ('+r.status+')')})
         .catch(function(e){
-          if(e.message&&e.message.toLowerCase().indexOf('cors')>-1||e.message.indexOf('fetch')>-1){
-            setConn('err','CORS blocked');
-            setStatus('err','CORS error — enable proxy or add CORS headers to FastAPI');
-          } else {
-            setConn('err','Unreachable');
-            setStatus('err','Cannot reach server — check URL and that FastAPI is running');
-          }
+          if(e.message&&(e.message.toLowerCase().includes('cors')||e.message.includes('fetch'))){setConn('err','CORS blocked');setStatus('err','CORS error — enable proxy or add CORS headers');}
+          else{setConn('err','Unreachable');setStatus('err','Cannot reach server — check URL');}
         });
     });
 }
@@ -428,413 +622,423 @@ function setStatus(type,msg){
 function setLoading(on){
   gLoading=on;
   document.getElementById('loading-bar').className='loading-bar'+(on?' active':'');
-  var btn=document.getElementById('btn-ask');
-  var icon=document.getElementById('ask-icon');
-  var lbl=document.getElementById('ask-label');
+  var btn=document.getElementById('btn-ask'),lbl=document.getElementById('ask-label');
   btn.disabled=on;
   if(on){
-    icon.outerHTML='<div class="spinner" id="ask-icon"></div>';
+    document.getElementById('ask-icon').outerHTML='<div class="spinner" id="ask-icon"></div>';
     lbl.textContent='Asking...';
   } else {
     var sp=document.getElementById('ask-icon');
-    if(sp&&sp.className==='spinner'){
-      sp.outerHTML='<svg id="ask-icon" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    }
+    if(sp&&sp.className==='spinner') sp.outerHTML='<svg id="ask-icon" width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     lbl.textContent='Ask';
   }
 }
-
-// ── Example chips ──────────────────────────────────────────────────────────
-function useExample(el){
-  document.getElementById('query-input').value=el.textContent.trim();
-  document.getElementById('query-input').focus();
-}
-
-// ── Clear ──────────────────────────────────────────────────────────────────
+function useExample(el){document.getElementById('query-input').value=el.textContent.trim();document.getElementById('query-input').focus();}
 function clearAll(){
   document.getElementById('query-input').value='';
-  document.getElementById('viz-area').innerHTML=
-    '<div class="empty-state"><div class="empty-icon">'
-    +'<svg width="26" height="26" viewBox="0 0 28 28" fill="none">'
-    +'<rect x="4" y="16" width="4" height="8" rx="1" fill="#2a3040"/>'
-    +'<rect x="10" y="10" width="4" height="14" rx="1" fill="#2a3040"/>'
-    +'<rect x="16" y="6" width="4" height="18" rx="1" fill="#2a3040"/>'
-    +'<rect x="22" y="12" width="4" height="12" rx="1" fill="#2a3040"/>'
-    +'</svg></div><h3>Ask anything about your HRMS data</h3>'
-    +'<p>Type a natural language question and click Ask.</p></div>';
+  document.getElementById('viz-area').innerHTML='<div class="empty-state"><div class="empty-icon"><svg width="26" height="26" viewBox="0 0 28 28" fill="none"><rect x="4" y="16" width="4" height="8" rx="1" fill="#2a3040"/><rect x="10" y="10" width="4" height="14" rx="1" fill="#2a3040"/><rect x="16" y="6" width="4" height="18" rx="1" fill="#2a3040"/><rect x="22" y="12" width="4" height="12" rx="1" fill="#2a3040"/></svg></div><h3>Ask anything about your HRMS data</h3><p>Type a natural language question and click Ask.</p></div>';
   gData=null;gActiveIdx=-1;
   setStatus('','Enter a query and click Ask');
   renderHistory();
 }
 
-// ── Ask / call API ─────────────────────────────────────────────────────────
+// ── Ask query ──────────────────────────────────────────────────────────────
 function askQuery(){
   if(gLoading)return;
   var q=document.getElementById('query-input').value.trim();
   var url=document.getElementById('api-url').value.trim();
   if(!q){setStatus('err','Please enter a query');return;}
   if(!url){setStatus('err','Please enter the API URL');return;}
-
-  setLoading(true);
-  setStatus('loading','Sending query to API...');
-  setConn('loading','Querying...');
-
-  var t0=Date.now();
-
-  var useCache=document.getElementById('chk-cache').checked;
-  var finalUrl=buildUrl(url);
-  fetch(finalUrl,{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({query:q,use_cache:useCache})
-  })
+  setLoading(true);setStatus('loading','Sending query to API...');setConn('loading','Querying...');
+  var t0=Date.now(),useCache=document.getElementById('chk-cache').checked;
+  fetch(buildUrl(url),{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({query:q,use_cache:useCache})})
   .then(function(res){
     var elapsed=((Date.now()-t0)/1000).toFixed(2);
-    if(!res.ok){
-      return res.text().then(function(body){
-        throw new Error('HTTP '+res.status+' \u2014 '+body.slice(0,200));
-      });
-    }
-    return res.json().then(function(data){return{data:data,elapsed:elapsed};});
+    if(!res.ok) return res.text().then(function(b){throw new Error('HTTP '+res.status+' \u2014 '+b.slice(0,200));});
+    return res.json().then(function(d){return{data:d,elapsed:elapsed};});
   })
   .then(function(result){
     var p=result.data,elapsed=result.elapsed;
-    setLoading(false);
-    setConn('ok','Connected');
-
-    if(!p||!Array.isArray(p.data)){
-      setStatus('err','Response missing "data" array');
-      showErr('API response does not contain a "data" array.\n\nReceived:\n'+JSON.stringify(p,null,2).slice(0,400));
-      return;
-    }
-
-    // Add to history
+    setLoading(false);setConn('ok','Connected');
+    if(!p||!Array.isArray(p.data)){setStatus('err','Response missing "data" array');showErr('API response does not contain a "data" array.\n\nReceived:\n'+JSON.stringify(p,null,2).slice(0,400));return;}
     var entry={query:q,response:p,time:Date.now(),elapsed:elapsed,rows:p.row_count||p.data.length};
-    gHistory.unshift(entry);
-    if(gHistory.length>50)gHistory.pop();
-    gActiveIdx=0;
-    renderHistory();
-
+    gHistory.unshift(entry);if(gHistory.length>50)gHistory.pop();
+    gActiveIdx=0;renderHistory();
     setStatus('ok','Got '+entry.rows+' rows in '+elapsed+'s');
     renderViz(p);
+    if(p.generated_sql||p.user_query){
+      gLastSql=p.generated_sql||p.user_query||'';
+      if(!gChatOpen) document.getElementById('chat-fab-badge').classList.add('show');
+    }
   })
-  .catch(function(e){
-    setLoading(false);
-    setConn('err','Error');
-    setStatus('err',e.message.slice(0,80));
-    showErr(e.message);
-  });
+  .catch(function(e){setLoading(false);setConn('err','Error');setStatus('err',e.message.slice(0,80));showErr(e.message);});
 }
 
 // ── History ────────────────────────────────────────────────────────────────
 function renderHistory(){
-  var list=document.getElementById('history-list');
-  var cnt=document.getElementById('hist-count');
+  var list=document.getElementById('history-list'),cnt=document.getElementById('hist-count');
   cnt.textContent=gHistory.length;
-  if(!gHistory.length){
-    list.innerHTML='<div class="history-empty">No queries yet.<br>Your history will appear here.</div>';
-    return;
-  }
+  if(!gHistory.length){list.innerHTML='<div class="history-empty">No queries yet.<br>Your history will appear here.</div>';return;}
   list.innerHTML=gHistory.map(function(h,i){
-    var active=i===gActiveIdx?' active':'';
-    return '<div class="history-item'+active+'" onclick="loadHistory('+i+')">'
+    return '<div class="history-item'+(i===gActiveIdx?' active':'')+'" onclick="loadHistory('+i+')">'
       +'<div class="h-query">'+esc(h.query)+'</div>'
-      +'<div class="h-meta">'
-        +'<span class="h-rows">'+h.rows+' rows</span>'
-        +'<span>'+h.elapsed+'s</span>'
-        +'<span class="h-time">'+timeAgo(h.time)+'</span>'
-      +'</div>'
+      +'<div class="h-meta"><span class="h-rows">'+h.rows+' rows</span><span>'+h.elapsed+'s</span><span class="h-time">'+timeAgo(h.time)+'</span></div>'
       +'</div>';
   }).join('');
 }
-
 function loadHistory(i){
   if(i<0||i>=gHistory.length)return;
-  gActiveIdx=i;
-  var entry=gHistory[i];
-  document.getElementById('query-input').value=entry.query;
-  renderHistory();
-  renderViz(entry.response);
-  setStatus('ok','Loaded from history \u2014 '+entry.rows+' rows');
+  gActiveIdx=i;var e=gHistory[i];
+  document.getElementById('query-input').value=e.query;
+  renderHistory();renderViz(e.response);setStatus('ok','Loaded from history \u2014 '+e.rows+' rows');
+  if(e.response&&(e.response.generated_sql||e.response.user_query)) gLastSql=e.response.generated_sql||e.response.user_query||'';
 }
 
-// ── Visualize response ─────────────────────────────────────────────────────
+// ── Render viz ─────────────────────────────────────────────────────────────
 function renderViz(p){
-  var data=p.data;
-  gData=data;gPage=0;
+  var data=p.data;gData=data;gPage=0;
   var det=detectKeys(data);gX=det.x;gY=det.y;
-  var viz=document.getElementById('viz-area');
-  viz.innerHTML='';
-
-  // meta cards
-  var elapsed=p.elapsed_ms?((p.elapsed_ms/1000).toFixed(2)+'s'):(p.elapsed||'—');
-  var mi=[
-    {l:'Rows',    v:p.row_count!=null?p.row_count:data.length, c:'green'},
-    {l:'Model',   v:(p.model||'N/A').split('/').pop(), c:''},
-    {l:'Cached',  v:p.cached?'YES':'NO', c:p.cached?'blue':''},
-    {l:'Prompt',  v:p.prompt_version||'N/A', c:''}
-  ];
+  var viz=document.getElementById('viz-area');viz.innerHTML='';
+  var mi=[{l:'Rows',v:p.row_count!=null?p.row_count:data.length,c:'green'},{l:'Model',v:(p.model||'N/A').split('/').pop(),c:''},{l:'Cached',v:p.cached?'YES':'NO',c:p.cached?'blue':''},{l:'Prompt',v:p.prompt_version||'N/A',c:''}];
   var md=document.createElement('div');md.className='meta-row animate-in';
   md.innerHTML=mi.map(function(m){return '<div class="meta-card"><div class="meta-label">'+esc(m.l)+'</div><div class="meta-value '+m.c+'" title="'+esc(m.v)+'">'+esc(m.v)+'</div></div>';}).join('');
   viz.appendChild(md);
-
-  // SQL card
   if(p.user_query||p.generated_sql){
+    var sqlText=p.generated_sql||p.user_query||'';
     var qd=document.createElement('div');qd.className='query-card animate-in';
-    qd.innerHTML='<div class="query-card-header"><div class="query-card-title">Generated SQL</div><div class="query-tag">SELECT</div></div>'
-      +'<div class="query-body">'+esc(p.generated_sql||p.user_query||'')+'</div>';
+    qd.innerHTML='<div class="query-card-header"><div class="query-card-title">Generated SQL</div>'
+      +'<div style="display:flex;align-items:center;gap:7px">'
+        +'<button class="btn-explain-sql" onclick="openExplain(\''+sqlText.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' ')+'\')">'
+          +'<svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          +'Explain'
+        +'</button>'
+        +'<div class="query-tag">SELECT</div>'
+      +'</div></div>'
+      +'<div class="query-body">'+esc(sqlText)+'</div>';
     viz.appendChild(qd);
   }
-
   if(!data.length){
     var nb=document.createElement('div');nb.className='info-banner animate-in';
     nb.innerHTML='<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#80aaff" stroke-width="1.2"/><path d="M8 7v4M8 5.5v.5" stroke="#80aaff" stroke-width="1.2" stroke-linecap="round"/></svg>Query returned 0 rows.';
     viz.appendChild(nb);return;
   }
-
-  // chart card
   var ak=Object.keys(data[0]),tot=Math.ceil(data.length/PAGE),hasPg=data.length>PAGE;
   var xOpts=ak.map(function(k){return '<option value="'+esc(k)+'"'+(k===gX?' selected':'')+'>'+esc(k)+'</option>';}).join('');
   var yOpts=ak.map(function(k){return '<option value="'+esc(k)+'"'+(k===gY?' selected':'')+'>'+esc(k)+'</option>';}).join('');
   var pgHtml=hasPg?'<div class="page-controls"><button class="page-btn" onclick="changePage(-1)">&#8249;</button><span class="page-info" id="page-info">1/'+tot+'</span><button class="page-btn" onclick="changePage(1)">&#8250;</button></div>':'';
-
   var cd=document.createElement('div');cd.className='chart-card animate-in';
-  cd.innerHTML=
-    '<div class="chart-card-header">'
-      +'<div class="chart-card-header-left">'
-        +'<div class="chart-card-title">'+esc(p.user_query||'Query Results')+'</div>'
-        +'<div class="chart-card-sub" id="chart-sub">'+data.length+' records &middot; '+esc(gX)+' vs '+esc(gY)+'</div>'
-      +'</div>'
-      +'<div class="chart-controls">'
-        +'<button class="chart-type-btn active" id="btn-bar" onclick="switchChart(\'bar\')">Bar</button>'
-        +'<button class="chart-type-btn" id="btn-horizontal" onclick="switchChart(\'horizontal\')">H-Bar</button>'
-        +'<button class="chart-type-btn" id="btn-line" onclick="switchChart(\'line\')">Line</button>'
-        +'<button class="chart-type-btn" id="btn-pie" onclick="switchChart(\'pie\')">Pie</button>'
-        +'<button class="chart-type-btn" id="btn-donut" onclick="switchChart(\'donut\')">Donut</button>'
-      +'</div>'
-    +'</div>'
-    +'<div class="axis-selectors" id="axis-bar">'
-      +'<span class="axis-sel-label">X</span>'
-      +'<select id="sel-x" onchange="onAxisChange()" class="axis-sel">'+xOpts+'</select>'
-      +'<div class="axis-sep"></div>'
-      +'<span class="axis-sel-label">Y</span>'
-      +'<select id="sel-y" onchange="onAxisChange()" class="axis-sel">'+yOpts+'</select>'
-      +pgHtml
-    +'</div>'
+  cd.innerHTML='<div class="chart-card-header"><div class="chart-card-header-left"><div class="chart-card-title">'+esc(p.user_query||'Query Results')+'</div><div class="chart-card-sub" id="chart-sub">'+data.length+' records &middot; '+esc(gX)+' vs '+esc(gY)+'</div></div>'
+    +'<div class="chart-controls"><button class="chart-type-btn active" id="btn-bar" onclick="switchChart(\'bar\')">Bar</button><button class="chart-type-btn" id="btn-horizontal" onclick="switchChart(\'horizontal\')">H-Bar</button><button class="chart-type-btn" id="btn-line" onclick="switchChart(\'line\')">Line</button><button class="chart-type-btn" id="btn-pie" onclick="switchChart(\'pie\')">Pie</button><button class="chart-type-btn" id="btn-donut" onclick="switchChart(\'donut\')">Donut</button></div></div>'
+    +'<div class="axis-selectors" id="axis-bar"><span class="axis-sel-label">X</span><select id="sel-x" onchange="onAxisChange()" class="axis-sel">'+xOpts+'</select><div class="axis-sep"></div><span class="axis-sel-label">Y</span><select id="sel-y" onchange="onAxisChange()" class="axis-sel">'+yOpts+'</select>'+pgHtml+'</div>'
     +'<div id="chart-container"></div>';
   viz.appendChild(cd);
-
-  // table
-  var cols=Object.keys(data[0]);
-  var tDiv=document.createElement('div');tDiv.className='table-card animate-in';
+  var cols=Object.keys(data[0]),tDiv=document.createElement('div');tDiv.className='table-card animate-in';
   var th=cols.map(function(c){return '<th class="'+(isN(data[0][c])?'numeric':'')+'">'+esc(c)+'</th>';}).join('');
   var tb=data.map(function(row){return '<tr>'+cols.map(function(c){return '<td class="'+(isN(row[c])?'numeric':'')+'">'+esc(row[c])+'</td>';}).join('')+'</tr>';}).join('');
-  tDiv.innerHTML='<div class="table-card-header"><div class="table-card-title">Raw Data</div><div class="row-count">'+data.length+' rows</div></div>'
-    +'<div style="overflow-x:auto"><table><thead><tr>'+th+'</tr></thead><tbody>'+tb+'</tbody></table></div>';
+  tDiv.innerHTML='<div class="table-card-header"><div class="table-card-title">Raw Data</div><div class="row-count">'+data.length+' rows</div></div><div style="overflow-x:auto"><table><thead><tr>'+th+'</tr></thead><tbody>'+tb+'</tbody></table></div>';
   viz.appendChild(tDiv);
-
   draw('bar');
 }
 
-// ── Chart controls ─────────────────────────────────────────────────────────
-function onAxisChange(){
-  var sx=document.getElementById('sel-x'),sy=document.getElementById('sel-y');
-  if(sx)gX=sx.value;if(sy)gY=sy.value;
-  var sub=document.getElementById('chart-sub');
-  if(sub)sub.textContent=gData.length+' records \u00b7 '+gX+' vs '+gY;
-  draw(gType);
-}
-function changePage(d){
-  if(!gData)return;
-  var tot=Math.ceil(gData.length/PAGE);
-  gPage=Math.max(0,Math.min(tot-1,gPage+d));
-  var el=document.getElementById('page-info');
-  if(el)el.textContent=(gPage+1)+'/'+tot;
-  draw(gType);
-}
-function switchChart(t){
-  gType=t;
-  ['bar','horizontal','line','pie','donut'].forEach(function(x){var b=document.getElementById('btn-'+x);if(b)b.classList.toggle('active',x===t);});
-  var ax=document.getElementById('axis-bar');
-  if(ax)ax.style.display=(t==='pie'||t==='donut')?'none':'flex';
-  draw(t);
-}
+function onAxisChange(){var sx=document.getElementById('sel-x'),sy=document.getElementById('sel-y');if(sx)gX=sx.value;if(sy)gY=sy.value;var sub=document.getElementById('chart-sub');if(sub)sub.textContent=gData.length+' records \u00b7 '+gX+' vs '+gY;draw(gType);}
+function changePage(d){if(!gData)return;var tot=Math.ceil(gData.length/PAGE);gPage=Math.max(0,Math.min(tot-1,gPage+d));var el=document.getElementById('page-info');if(el)el.textContent=(gPage+1)+'/'+tot;draw(gType);}
+function switchChart(t){gType=t;['bar','horizontal','line','pie','donut'].forEach(function(x){var b=document.getElementById('btn-'+x);if(b)b.classList.toggle('active',x===t);});var ax=document.getElementById('axis-bar');if(ax)ax.style.display=(t==='pie'||t==='donut')?'none':'flex';draw(t);}
 
-// ── D3 draw ────────────────────────────────────────────────────────────────
+// ── D3 draw (unchanged from original) ─────────────────────────────────────
 function draw(type){
   var c=document.getElementById('chart-container');
-  if(!c||!gData)return;
-  c.innerHTML='';
+  if(!c||!gData)return;c.innerHTML='';
   if(type==='pie'||type==='donut'){drawPie(c,type);return;}
-
   var sl=gData.slice(gPage*PAGE,(gPage+1)*PAGE);
   var data=sl.map(function(d){return{x:String(d[gX]==null?'':d[gX]),y:parseFloat(d[gY])||0,raw:d};});
   if(!data.length){c.innerHTML='<div style="padding:28px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:11px">No renderable data</div>';return;}
-
   var W=c.clientWidth||680,H=data.length>12?340:280;
   var mg=type==='horizontal'?{t:10,r:65,b:14,l:110}:{t:24,r:14,b:58,l:60};
   var iW=W-mg.l-mg.r,iH=H-mg.t-mg.b;
   var svg=d3.select(c).append('svg').attr('width',W).attr('height',H).style('overflow','visible');
   var g=svg.append('g').attr('transform','translate('+mg.l+','+mg.t+')');
   var tip=document.getElementById('tooltip');
-
-  function sT(ev,d){
-    tip.innerHTML='<div class="tt-key">'+esc(gX)+'</div><div class="tt-val">'+esc(d.x)+'</div>'
-      +'<div class="tt-key">'+esc(gY)+'</div><div class="tt-val">'+Number(d.y).toLocaleString()+'</div>';
-    tip.classList.add('visible');tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';
-  }
+  function sT(ev,d){tip.innerHTML='<div class="tt-key">'+esc(gX)+'</div><div class="tt-val">'+esc(d.x)+'</div><div class="tt-key">'+esc(gY)+'</div><div class="tt-val">'+Number(d.y).toLocaleString()+'</div>';tip.classList.add('visible');tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';}
   function mT(ev){tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';}
   function hT(){tip.classList.remove('visible');}
-
   if(type==='bar'){
     var xSc=d3.scaleBand().domain(data.map(function(d){return d.x;})).range([0,iW]).padding(.28);
-    var dom=sDom(data.map(function(d){return d.y;}));
-    var ySc=d3.scaleLinear().domain(dom).range([iH,0]).nice();
-    g.append('g').call(d3.axisLeft(ySc).tickSize(-iW).tickFormat('').ticks(4))
-      .selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');
+    var dom=sDom(data.map(function(d){return d.y;}));var ySc=d3.scaleLinear().domain(dom).range([iH,0]).nice();
+    g.append('g').call(d3.axisLeft(ySc).tickSize(-iW).tickFormat('').ticks(4)).selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');
     g.selectAll('.domain').remove();
-    g.selectAll('.bar').data(data).join('rect').attr('class','bar')
-      .attr('x',function(d){return xSc(d.x);}).attr('y',iH).attr('width',xSc.bandwidth()).attr('height',0).attr('rx',3)
-      .attr('fill',function(_,i){return pc(i);})
-      .on('mouseover',sT).on('mousemove',mT).on('mouseout',hT)
-      .transition().duration(480).delay(function(_,i){return i*35;}).ease(d3.easeCubicOut)
-      .attr('y',function(d){return ySc(d.y);}).attr('height',function(d){return iH-ySc(d.y);});
-    if(data.length<=15){
-      g.selectAll('.vl').data(data).join('text').attr('class','value-label')
-        .attr('x',function(d){return xSc(d.x)+xSc.bandwidth()/2;}).attr('y',function(d){return ySc(d.y)-4;})
-        .attr('text-anchor','middle').style('opacity',0).text(function(d){return fmt(d.y);})
-        .transition().duration(200).delay(function(_,i){return i*35+320;}).style('opacity',1);
-    }
-    g.append('g').attr('transform','translate(0,'+iH+')')
-      .call(d3.axisBottom(xSc).tickSize(0))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');})
-      .selectAll('text').style('fill','var(--muted)').style('font-size','10px')
-        .attr('transform','rotate(-32)').attr('text-anchor','end').attr('dx','-.4em').attr('dy','.1em');
-    g.append('g').call(d3.axisLeft(ySc).ticks(4).tickFormat(fmt))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
-
+    g.selectAll('.bar').data(data).join('rect').attr('class','bar').attr('x',function(d){return xSc(d.x);}).attr('y',iH).attr('width',xSc.bandwidth()).attr('height',0).attr('rx',3).attr('fill',function(_,i){return pc(i);}).on('mouseover',sT).on('mousemove',mT).on('mouseout',hT).transition().duration(480).delay(function(_,i){return i*35;}).ease(d3.easeCubicOut).attr('y',function(d){return ySc(d.y);}).attr('height',function(d){return iH-ySc(d.y);});
+    if(data.length<=15) g.selectAll('.vl').data(data).join('text').attr('class','value-label').attr('x',function(d){return xSc(d.x)+xSc.bandwidth()/2;}).attr('y',function(d){return ySc(d.y)-4;}).attr('text-anchor','middle').style('opacity',0).text(function(d){return fmt(d.y);}).transition().duration(200).delay(function(_,i){return i*35+320;}).style('opacity',1);
+    g.append('g').attr('transform','translate(0,'+iH+')').call(d3.axisBottom(xSc).tickSize(0)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');}).selectAll('text').style('fill','var(--muted)').style('font-size','10px').attr('transform','rotate(-32)').attr('text-anchor','end').attr('dx','-.4em').attr('dy','.1em');
+    g.append('g').call(d3.axisLeft(ySc).ticks(4).tickFormat(fmt)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
   } else if(type==='horizontal'){
-    var yS2=d3.scaleBand().domain(data.map(function(d){return d.x;})).range([0,iH]).padding(.28);
-    var dH=sDom(data.map(function(d){return d.y;}));
-    var xS2=d3.scaleLinear().domain(dH).range([0,iW]).nice();
-    g.append('g').call(d3.axisBottom(xS2).tickSize(iH).tickFormat('').ticks(4))
-      .selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');
-    g.selectAll('.domain').remove();
-    g.selectAll('.bar').data(data).join('rect').attr('class','bar')
-      .attr('x',0).attr('y',function(d){return yS2(d.x);}).attr('width',0).attr('height',yS2.bandwidth()).attr('rx',3)
-      .attr('fill',function(_,i){return pc(i);})
-      .on('mouseover',sT).on('mousemove',mT).on('mouseout',hT)
-      .transition().duration(480).delay(function(_,i){return i*35;}).ease(d3.easeCubicOut)
-      .attr('width',function(d){return Math.max(0,xS2(d.y)-xS2(dH[0]));});
-    if(data.length<=15){
-      g.selectAll('.vl').data(data).join('text').attr('class','value-label')
-        .attr('x',function(d){return xS2(d.y)+4;}).attr('y',function(d){return yS2(d.x)+yS2.bandwidth()/2+4;})
-        .style('opacity',0).text(function(d){return fmt(d.y);})
-        .transition().duration(200).delay(function(_,i){return i*35+320;}).style('opacity',1);
-    }
-    g.append('g').attr('transform','translate(0,'+iH+')')
-      .call(d3.axisBottom(xS2).ticks(4).tickFormat(fmt))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
-    g.append('g').call(d3.axisLeft(yS2).tickSize(0))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');})
-      .selectAll('text').style('fill','var(--muted)').style('font-size','10px');
-
+    var yS2=d3.scaleBand().domain(data.map(function(d){return d.x;})).range([0,iH]).padding(.28);var dH=sDom(data.map(function(d){return d.y;}));var xS2=d3.scaleLinear().domain(dH).range([0,iW]).nice();
+    g.append('g').call(d3.axisBottom(xS2).tickSize(iH).tickFormat('').ticks(4)).selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');g.selectAll('.domain').remove();
+    g.selectAll('.bar').data(data).join('rect').attr('class','bar').attr('x',0).attr('y',function(d){return yS2(d.x);}).attr('width',0).attr('height',yS2.bandwidth()).attr('rx',3).attr('fill',function(_,i){return pc(i);}).on('mouseover',sT).on('mousemove',mT).on('mouseout',hT).transition().duration(480).delay(function(_,i){return i*35;}).ease(d3.easeCubicOut).attr('width',function(d){return Math.max(0,xS2(d.y)-xS2(dH[0]));});
+    if(data.length<=15) g.selectAll('.vl').data(data).join('text').attr('class','value-label').attr('x',function(d){return xS2(d.y)+4;}).attr('y',function(d){return yS2(d.x)+yS2.bandwidth()/2+4;}).style('opacity',0).text(function(d){return fmt(d.y);}).transition().duration(200).delay(function(_,i){return i*35+320;}).style('opacity',1);
+    g.append('g').attr('transform','translate(0,'+iH+')').call(d3.axisBottom(xS2).ticks(4).tickFormat(fmt)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
+    g.append('g').call(d3.axisLeft(yS2).tickSize(0)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');}).selectAll('text').style('fill','var(--muted)').style('font-size','10px');
   } else {
-    var xSL=d3.scalePoint().domain(data.map(function(d){return d.x;})).range([0,iW]).padding(.3);
-    var dL=sDom(data.map(function(d){return d.y;}));
-    var ySL=d3.scaleLinear().domain(dL).range([iH,0]).nice();
-    g.append('g').call(d3.axisLeft(ySL).tickSize(-iW).tickFormat('').ticks(4))
-      .selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');
-    g.selectAll('.domain').remove();
-    var defs=svg.append('defs');
-    var gr=defs.append('linearGradient').attr('id','ag').attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',1);
-    gr.append('stop').attr('offset','0%').attr('stop-color','#0066ff').attr('stop-opacity',.18);
-    gr.append('stop').attr('offset','100%').attr('stop-color','#0066ff').attr('stop-opacity',0);
-    g.append('path').datum(data).attr('fill','url(#ag)')
-      .attr('d',d3.area().x(function(d){return xSL(d.x);}).y0(iH).y1(function(d){return ySL(d.y);}).curve(d3.curveMonotoneX));
-    var lp=g.append('path').datum(data).attr('fill','none').attr('stroke','var(--accent2)').attr('stroke-width',2)
-      .attr('d',d3.line().x(function(d){return xSL(d.x);}).y(function(d){return ySL(d.y);}).curve(d3.curveMonotoneX));
-    var ln=lp.node().getTotalLength();
-    lp.attr('stroke-dasharray',ln).attr('stroke-dashoffset',ln)
-      .transition().duration(750).ease(d3.easeLinear).attr('stroke-dashoffset',0);
-    g.selectAll('.dot').data(data).join('circle')
-      .attr('cx',function(d){return xSL(d.x);}).attr('cy',function(d){return ySL(d.y);})
-      .attr('r',4).attr('fill','var(--accent2)').attr('stroke','var(--bg)').attr('stroke-width',2).style('opacity',0)
-      .on('mouseover',sT).on('mousemove',mT).on('mouseout',hT)
-      .transition().delay(function(_,i){return i*45+450;}).style('opacity',1);
-    g.append('g').attr('transform','translate(0,'+iH+')')
-      .call(d3.axisBottom(xSL).tickSize(0))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');})
-      .selectAll('text').style('fill','var(--muted)').style('font-size','10px')
-        .attr('transform','rotate(-32)').attr('text-anchor','end').attr('dx','-.4em').attr('dy','.1em');
-    g.append('g').call(d3.axisLeft(ySL).ticks(4).tickFormat(fmt))
-      .call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
+    var xSL=d3.scalePoint().domain(data.map(function(d){return d.x;})).range([0,iW]).padding(.3);var dL=sDom(data.map(function(d){return d.y;}));var ySL=d3.scaleLinear().domain(dL).range([iH,0]).nice();
+    g.append('g').call(d3.axisLeft(ySL).tickSize(-iW).tickFormat('').ticks(4)).selectAll('line').style('stroke','var(--border)').style('stroke-dasharray','3,4');g.selectAll('.domain').remove();
+    var defs=svg.append('defs');var gr=defs.append('linearGradient').attr('id','ag').attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',1);
+    gr.append('stop').attr('offset','0%').attr('stop-color','#0066ff').attr('stop-opacity',.18);gr.append('stop').attr('offset','100%').attr('stop-color','#0066ff').attr('stop-opacity',0);
+    g.append('path').datum(data).attr('fill','url(#ag)').attr('d',d3.area().x(function(d){return xSL(d.x);}).y0(iH).y1(function(d){return ySL(d.y);}).curve(d3.curveMonotoneX));
+    var lp=g.append('path').datum(data).attr('fill','none').attr('stroke','var(--accent2)').attr('stroke-width',2).attr('d',d3.line().x(function(d){return xSL(d.x);}).y(function(d){return ySL(d.y);}).curve(d3.curveMonotoneX));
+    var ln=lp.node().getTotalLength();lp.attr('stroke-dasharray',ln).attr('stroke-dashoffset',ln).transition().duration(750).ease(d3.easeLinear).attr('stroke-dashoffset',0);
+    g.selectAll('.dot').data(data).join('circle').attr('cx',function(d){return xSL(d.x);}).attr('cy',function(d){return ySL(d.y);}).attr('r',4).attr('fill','var(--accent2)').attr('stroke','var(--bg)').attr('stroke-width',2).style('opacity',0).on('mouseover',sT).on('mousemove',mT).on('mouseout',hT).transition().delay(function(_,i){return i*45+450;}).style('opacity',1);
+    g.append('g').attr('transform','translate(0,'+iH+')').call(d3.axisBottom(xSL).tickSize(0)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');}).selectAll('text').style('fill','var(--muted)').style('font-size','10px').attr('transform','rotate(-32)').attr('text-anchor','end').attr('dx','-.4em').attr('dy','.1em');
+    g.append('g').call(d3.axisLeft(ySL).ticks(4).tickFormat(fmt)).call(function(ax){ax.select('.domain').style('stroke','var(--border)');});
   }
 }
 
 function drawPie(container,type){
-  var raw=gData.slice(0,20);
-  var data=raw.map(function(d,i){var v=Math.abs(parseFloat(d[gY])||0);return{label:String(d[gX]==null?'#'+(i+1):d[gX]),value:v,raw:d};}).filter(function(d){return d.value>0;});
+  var raw=gData.slice(0,20);var data=raw.map(function(d,i){var v=Math.abs(parseFloat(d[gY])||0);return{label:String(d[gX]==null?'#'+(i+1):d[gX]),value:v,raw:d};}).filter(function(d){return d.value>0;});
   if(!data.length){container.innerHTML='<div style="padding:28px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:11px">No positive numeric values to render</div>';return;}
-  var total=d3.sum(data,function(d){return d.value;});
-  var W=container.clientWidth||680,R=Math.min(Math.floor(W*.27),115),isD=type==='donut',iR=isD?Math.floor(R*.52):0;
-  var H=R*2+28,cx=R+14,cy=H/2;
+  var total=d3.sum(data,function(d){return d.value;}),W=container.clientWidth||680,R=Math.min(Math.floor(W*.27),115),isD=type==='donut',iR=isD?Math.floor(R*.52):0,H=R*2+28,cx=R+14,cy=H/2;
   var wrap=document.createElement('div');wrap.className='pie-wrap';container.appendChild(wrap);
-  var svgEl=document.createElementNS('http://www.w3.org/2000/svg','svg');
-  svgEl.setAttribute('width',cx*2);svgEl.setAttribute('height',H);svgEl.style.flexShrink='0';
-  wrap.appendChild(svgEl);
+  var svgEl=document.createElementNS('http://www.w3.org/2000/svg','svg');svgEl.setAttribute('width',cx*2);svgEl.setAttribute('height',H);svgEl.style.flexShrink='0';wrap.appendChild(svgEl);
   var svg=d3.select(svgEl),g=svg.append('g').attr('transform','translate('+cx+','+cy+')');
   var pie=d3.pie().value(function(d){return d.value;}).sort(null).padAngle(.02);
   var arc=d3.arc().innerRadius(iR).outerRadius(R).cornerRadius(3);
   var arcH=d3.arc().innerRadius(iR).outerRadius(R+7).cornerRadius(3);
   var tip=document.getElementById('tooltip');
-  g.selectAll('.arc').data(pie(data)).join('g').attr('class','arc').append('path')
-    .attr('fill',function(_,i){return pc(i);}).style('cursor','pointer')
-    .on('mouseover',function(ev,d){
-      d3.select(this).transition().duration(100).attr('d',arcH(d));
-      tip.innerHTML='<div class="tt-key">'+esc(gX)+'</div><div class="tt-val">'+esc(d.data.label)+'</div>'
-        +'<div class="tt-key">'+esc(gY)+'</div><div class="tt-val">'+d.data.value.toLocaleString()+'</div>'
-        +'<div class="tt-key">SHARE</div><div class="tt-val">'+(d.data.value/total*100).toFixed(1)+'%</div>';
-      tip.classList.add('visible');tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';
-    })
+  g.selectAll('.arc').data(pie(data)).join('g').attr('class','arc').append('path').attr('fill',function(_,i){return pc(i);}).style('cursor','pointer')
+    .on('mouseover',function(ev,d){d3.select(this).transition().duration(100).attr('d',arcH(d));tip.innerHTML='<div class="tt-key">'+esc(gX)+'</div><div class="tt-val">'+esc(d.data.label)+'</div><div class="tt-key">'+esc(gY)+'</div><div class="tt-val">'+d.data.value.toLocaleString()+'</div><div class="tt-key">SHARE</div><div class="tt-val">'+(d.data.value/total*100).toFixed(1)+'%</div>';tip.classList.add('visible');tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';})
     .on('mousemove',function(ev){tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY-20)+'px';})
     .on('mouseout',function(ev,d){d3.select(this).transition().duration(100).attr('d',arc(d));tip.classList.remove('visible');})
-    .transition().duration(550).delay(function(_,i){return i*35;}).ease(d3.easeBackOut.overshoot(.6))
-    .attrTween('d',function(d){var ip=d3.interpolate({startAngle:d.startAngle,endAngle:d.startAngle},d);return function(t){return arc(ip(t));};});
-  if(isD){
-    g.append('text').attr('text-anchor','middle').attr('dy','-.25em')
-      .style('font-family','var(--sans)').style('font-size','9px').style('font-weight','700')
-      .style('fill','var(--muted)').style('letter-spacing','.1em').text('TOTAL');
-    g.append('text').attr('text-anchor','middle').attr('dy','1em')
-      .style('font-family','var(--mono)').style('font-size','13px').style('font-weight','700')
-      .style('fill','var(--accent)').text(fmt(total));
-  }
+    .transition().duration(550).delay(function(_,i){return i*35;}).ease(d3.easeBackOut.overshoot(.6)).attrTween('d',function(d){var ip=d3.interpolate({startAngle:d.startAngle,endAngle:d.startAngle},d);return function(t){return arc(ip(t));};});
+  if(isD){g.append('text').attr('text-anchor','middle').attr('dy','-.25em').style('font-family','var(--sans)').style('font-size','9px').style('font-weight','700').style('fill','var(--muted)').style('letter-spacing','.1em').text('TOTAL');g.append('text').attr('text-anchor','middle').attr('dy','1em').style('font-family','var(--mono)').style('font-size','13px').style('font-weight','700').style('fill','var(--accent)').text(fmt(total));}
   var leg=document.createElement('div');leg.className='pie-legend';
-  data.forEach(function(d,i){
-    var it=document.createElement('div');it.className='legend-item';
-    it.innerHTML='<div class="legend-dot" style="background:'+pc(i)+'"></div>'
-      +'<span class="legend-lbl">'+esc(d.label)+'</span>'
-      +'<span class="legend-val">'+(d.value/total*100).toFixed(1)+'%</span>';
-    leg.appendChild(it);
-  });
+  data.forEach(function(d,i){var it=document.createElement('div');it.className='legend-item';it.innerHTML='<div class="legend-dot" style="background:'+pc(i)+'"></div><span class="legend-lbl">'+esc(d.label)+'</span><span class="legend-val">'+(d.value/total*100).toFixed(1)+'%</span>';leg.appendChild(it);});
   wrap.appendChild(leg);
 }
 
 function showErr(msg){
-  var viz=document.getElementById('viz-area');
-  var b=document.createElement('div');b.className='error-banner animate-in';
-  b.innerHTML='<svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="7" stroke="#ff4d6d" stroke-width="1.2"/>'
-    +'<path d="M8 5v4M8 10.5v.5" stroke="#ff4d6d" stroke-width="1.2" stroke-linecap="round"/></svg>'
-    +'<span style="white-space:pre-wrap">'+esc(msg)+'</span>';
+  var viz=document.getElementById('viz-area');var b=document.createElement('div');b.className='error-banner animate-in';
+  b.innerHTML='<svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="7" stroke="#ff4d6d" stroke-width="1.2"/><path d="M8 5v4M8 10.5v.5" stroke="#ff4d6d" stroke-width="1.2" stroke-linecap="round"/></svg><span style="white-space:pre-wrap">'+esc(msg)+'</span>';
   viz.innerHTML='';viz.appendChild(b);
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// CHAT DRAWER — calls /api/v1/explain and /api/v1/chat
+// ══════════════════════════════════════════════════════════════════════════
+
+function toggleChat(){
+  gChatOpen=!gChatOpen;
+  document.getElementById('chat-drawer').classList.toggle('open',gChatOpen);
+  if(gChatOpen) document.getElementById('chat-fab-badge').classList.remove('show');
+}
+
+function switchTab(t){
+  gChatTab=t;
+  ['explain','debug','chat'].forEach(function(x){
+    document.getElementById('tab-'+x).classList.toggle('active',x===t);
+    document.getElementById('panel-'+x).style.display=x===t?'block':'none';
+  });
+  document.getElementById('panel-debug').style.display=t==='debug'?'block':'none';
+}
+
+function useLastSql(target){
+  if(!gLastSql) return;
+  var id=target==='debug-sql'?'debug-sql-input':'chat-sql-input';
+  document.getElementById(id).value=gLastSql;
+}
+
+// ── Render chat messages ───────────────────────────────────────────────────
+function renderChat(){
+  var box=document.getElementById('chat-messages');
+  var empty=document.getElementById('chat-empty');
+  if(!gConvHistory.length){if(empty)empty.style.display='flex';return;}
+  if(empty)empty.style.display='none';
+  box.querySelectorAll('.msg').forEach(function(el){el.remove();});
+  gConvHistory.forEach(function(m){
+    var div=document.createElement('div');div.className='msg '+m.role;
+    var label=m.role==='user'?'You':'Claude AI (via API)';
+    var bubble='<div class="msg-label">'+esc(label)+'</div>';
+    if(m.role==='user'){
+      bubble+='<div class="msg-bubble">';
+      if(m.error) bubble+='<span class="err-badge">🐛 ERROR MODE</span>';
+      if(m.sql) bubble+='<span class="msg-sql-snip">'+esc(m.sql)+'</span>';
+      if(m.error) bubble+='<span class="msg-err-snip">'+esc(m.error)+'</span>';
+      bubble+='\n'+esc(m.content)+'</div>';
+    } else {
+      bubble+='<div class="msg-bubble'+(m.thinking?' thinking':'')+'">'+esc(m.content)+'</div>';
+    }
+    div.innerHTML=bubble;
+    box.appendChild(div);
+  });
+  box.scrollTop=box.scrollHeight;
+}
+
+function addMsg(role,content,extras){
+  var m=Object.assign({role:role,content:content},extras||{});
+  gConvHistory.push(m);renderChat();
+  return gConvHistory.length-1;
+}
+function updateLastAssistant(content,thinking){
+  for(var i=gConvHistory.length-1;i>=0;i--){
+    if(gConvHistory[i].role==='assistant'){
+      gConvHistory[i].content=content;gConvHistory[i].thinking=!!thinking;break;
+    }
+  }
+  renderChat();
+}
+
+// ── /api/v1/explain ────────────────────────────────────────────────────────
+function callExplain(){
+  if(gChatBusy) return;
+  var sql=document.getElementById('chat-sql-input').value.trim();
+  var question=(document.getElementById('chat-ask-input').value.trim()||'Explain this SQL query in plain English');
+  if(!sql){addMsg('assistant','Please paste a SQL query in the input box first.');return;}
+
+  gChatBusy=true;
+  document.getElementById('btn-explain-send').disabled=true;
+  document.getElementById('chat-ask-input').value='';
+
+  addMsg('user',question,{sql:sql});
+  addMsg('assistant','Calling /api/v1/explain …',{thinking:true});
+
+  var base=getChatBase();
+  var useCache=document.getElementById('chk-cache').checked;
+  fetch(buildUrl(base+'/api/v1/explain'),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({sql:sql,question:question,use_cache:useCache})
+  })
+  .then(function(r){
+    if(!r.ok) return r.text().then(function(t){throw new Error('HTTP '+r.status+': '+t.slice(0,200));});
+    return r.json();
+  })
+  .then(function(data){
+    gChatBusy=false;document.getElementById('btn-explain-send').disabled=false;
+    var reply=data.explanation||data.reply||'No response received.';
+    var cached=data.cached?' (cached)':'';
+    updateLastAssistant(reply+(cached?'\n\n['+cached.trim()+']':''),false);
+    switchTab('chat'); // auto-switch to follow-up tab
+  })
+  .catch(function(e){
+    gChatBusy=false;document.getElementById('btn-explain-send').disabled=false;
+    updateLastAssistant('⚠ API error: '+e.message,false);
+  });
+}
+
+// ── /api/v1/chat for debug ─────────────────────────────────────────────────
+function callDebug(){
+  if(gChatBusy) return;
+  var sql=document.getElementById('debug-sql-input').value.trim();
+  var errMsg=document.getElementById('debug-err-input').value.trim();
+  var question=(document.getElementById('debug-ask-input').value.trim()||'Fix this SQL error and explain what was wrong');
+  if(!sql){addMsg('assistant','Please paste the errored SQL in the box.');return;}
+
+  gChatBusy=true;
+  document.getElementById('btn-debug-send').disabled=true;
+  document.getElementById('debug-ask-input').value='';
+
+  addMsg('user',question,{sql:sql,error:errMsg||null});
+  addMsg('assistant','Calling /api/v1/chat (debug mode) …',{thinking:true});
+
+  // Build messages for the chat endpoint from current conversation
+  var messages=gConvHistory
+    .filter(function(m){return !m.thinking;})
+    .map(function(m){return{role:m.role,content:m.content};});
+
+  var base=getChatBase();
+  fetch(buildUrl(base+'/api/v1/chat'),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      messages:messages,
+      sql_context:sql,
+      error_context:errMsg||null,
+      use_cache:false
+    })
+  })
+  .then(function(r){
+    if(!r.ok) return r.text().then(function(t){throw new Error('HTTP '+r.status+': '+t.slice(0,200));});
+    return r.json();
+  })
+  .then(function(data){
+    gChatBusy=false;document.getElementById('btn-debug-send').disabled=false;
+    updateLastAssistant(data.reply||'No response.',false);
+    switchTab('chat');
+  })
+  .catch(function(e){
+    gChatBusy=false;document.getElementById('btn-debug-send').disabled=false;
+    updateLastAssistant('⚠ API error: '+e.message,false);
+  });
+}
+
+// ── /api/v1/chat for follow-ups ────────────────────────────────────────────
+function callFollowup(){
+  if(gChatBusy) return;
+  var inp=document.getElementById('chat-followup-input');
+  var q=(inp?inp.value.trim():'');
+  if(!q) return;
+
+  gChatBusy=true;
+  document.getElementById('btn-followup-send').disabled=true;
+  inp.value='';
+
+  addMsg('user',q);
+  addMsg('assistant','Calling /api/v1/chat …',{thinking:true});
+
+  var messages=gConvHistory
+    .filter(function(m){return !m.thinking;})
+    .map(function(m){return{role:m.role,content:m.content};});
+
+  var base=getChatBase();
+  fetch(buildUrl(base+'/api/v1/chat'),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({messages:messages,use_cache:false})
+  })
+  .then(function(r){
+    if(!r.ok) return r.text().then(function(t){throw new Error('HTTP '+r.status+': '+t.slice(0,200));});
+    return r.json();
+  })
+  .then(function(data){
+    gChatBusy=false;document.getElementById('btn-followup-send').disabled=false;
+    updateLastAssistant(data.reply||'No response.',false);
+  })
+  .catch(function(e){
+    gChatBusy=false;document.getElementById('btn-followup-send').disabled=false;
+    updateLastAssistant('⚠ API error: '+e.message,false);
+  });
+}
+
+// ── Quick chips ────────────────────────────────────────────────────────────
+function sendQuick(question){
+  document.getElementById('chat-ask-input').value=question;
+  var sql=document.getElementById('chat-sql-input').value.trim();
+  if(sql) callExplain();
+}
+function sendDebugQuick(question){
+  document.getElementById('debug-ask-input').value=question;
+  var sql=document.getElementById('debug-sql-input').value.trim();
+  if(sql) callDebug();
+}
+
+// ── Open explain from SQL card Explain button ──────────────────────────────
+function openExplain(sql){
+  gLastSql=sql;
+  document.getElementById('chat-sql-input').value=sql;
+  if(!gChatOpen) toggleChat();
+  switchTab('explain');
+  document.getElementById('chat-ask-input').value='Explain this SQL query in plain English';
+  document.getElementById('chat-fab-badge').classList.remove('show');
+}
+
 // ── Keyboard shortcuts ─────────────────────────────────────────────────────
-document.getElementById('query-input').addEventListener('keydown',function(e){
-  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();askQuery();}
-});
-document.getElementById('api-url').addEventListener('keydown',function(e){
-  if(e.key==='Enter') testConn();
+document.getElementById('query-input').addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();askQuery();}});
+document.getElementById('api-url').addEventListener('keydown',function(e){if(e.key==='Enter') testConn();});
+document.getElementById('chat-followup-input').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();callFollowup();}});
+document.getElementById('chat-ask-input').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();callExplain();}});
+document.getElementById('debug-ask-input').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();callDebug();}});
+
+// Close drawer on outside click
+document.addEventListener('mousedown',function(e){
+  var drawer=document.getElementById('chat-drawer'),fab=document.getElementById('chat-fab');
+  if(gChatOpen&&!drawer.contains(e.target)&&!fab.contains(e.target)){gChatOpen=false;drawer.classList.remove('open');}
 });
 </script>
 </body>
